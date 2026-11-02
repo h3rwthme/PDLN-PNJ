@@ -1,0 +1,573 @@
+/* ==========================================================================
+   PDLN PNJ — MINIMALIST CORE DESIGN SYSTEM (MAIN.CSS)
+   Modern 2026 Indonesian Digital UI Standards (Clean, Quiet, Tactile, High-Contrast)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+:root {
+  /* Minimalist Neutral Palette (Zinc / Slate) */
+  --neutral-950: #09090b;
+  --neutral-900: #18181b;
+  --neutral-800: #27272a;
+  --neutral-700: #3f3f46;
+  --neutral-600: #52525b;
+  --neutral-500: #71717a;
+  --neutral-400: #a1a1aa;
+  --neutral-300: #d4d4d8;
+  --neutral-200: #e4e4e7;
+  --neutral-100: #f4f4f5;
+  --neutral-50:  #fafafa;
+  --white:       #ffffff;
+
+  /* Institutional Accent (Deep Navy / PNJ Precision Indigo & KUI Teal) */
+  --brand-primary: #0f233a;
+  --brand-hover:   #173559;
+  --brand-subtle:  #eef4fa;
+  --brand-accent:  #1e3a5f;
+  --kui-sidebar:   #06343b;
+  --kui-teal:      #008c95;
+  --kui-teal-soft: #12b5bd;
+
+  /* Status Colors (Quiet, Sophisticated) */
+  --status-verified-text: #047857;
+  --status-verified-bg:   #ecfdf5;
+  --status-verified-border: #a7f3d0;
+
+  --status-review-text:   #0369a1;
+  --status-review-bg:     #f0f9ff;
+  --status-review-border: #bae6fd;
+
+  --status-revision-text: #b45309;
+  --status-revision-bg:   #fffbeb;
+  --status-revision-border: #fde68a;
+
+  --status-draft-text:    #52525b;
+  --status-draft-bg:      #f4f4f5;
+  --status-draft-border:  #e4e4e7;
+
+  --status-danger-text:   #be123c;
+  --status-danger-bg:     #fff1f2;
+  --status-danger-border: #fecdd3;
+
+  /* Elevation (Ultra Subtle & Clean) */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14.5px;
+  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--neutral-50);
+  color: var(--neutral-900);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container */
+.app-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* Top Navbar */
+.navbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--neutral-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--neutral-950);
+}
+
+.brand-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--neutral-950);
+  line-height: 1.2;
+}
+
+.brand-text p {
+  font-size: 11px;
+  color: var(--neutral-500);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Interactive Profile Pill in Navbar */
+.user-mini-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 4px 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--neutral-200);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.user-mini-btn:hover {
+  background: var(--neutral-50);
+  border-color: var(--neutral-400);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--brand-subtle);
+  border: 1px solid #c9def3;
+  color: var(--brand-primary);
+  font-weight: 700;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--neutral-950);
+  line-height: 1.2;
+}
+
+.user-role-label {
+  font-size: 10.5px;
+  color: var(--neutral-500);
+}
+
+/* Typography & Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--neutral-950);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--neutral-600);
+  font-size: 13.5px;
+}
+
+/* Cards & Surfaces */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--neutral-200);
+  box-shadow: var(--shadow-xs);
+  padding: 24px;
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--neutral-950);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-subtitle {
+  font-size: 12.5px;
+  color: var(--neutral-500);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   ENTERPRISE DATA TABLE STYLES (Tegas, Berjarak, Solid)
+   ========================================================================== */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.data-table th {
+  background: #F8FAFC;
+  padding: 14px 18px;
+  font-weight: 700;
+  color: #1E293B;
+  border-top: 1px solid var(--neutral-300);
+  border-bottom: 2px solid #0F233A; /* Garis pembatas tebal & tegas khas Enterprise Admin */
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Jarak margin/padding lebih lega antara header dengan baris pertama data */
+.data-table tbody tr:first-child td {
+  padding-top: 20px;
+}
+
+.data-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #E2E8F0;
+  color: #1E293B;
+  vertical-align: middle;
+  background: #FFFFFF;
+}
+
+.data-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.data-table tbody tr:hover td {
+  background-color: #F8FAFC;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.badge-draft {
+  background: var(--status-draft-bg);
+  color: var(--status-draft-text);
+  border-color: var(--status-draft-border);
+}
+
+.badge-review {
+  background: var(--status-review-bg);
+  color: var(--status-review-text);
+  border-color: var(--status-review-border);
+}
+
+.badge-revision {
+  background: var(--status-revision-bg);
+  color: var(--status-revision-text);
+  border-color: var(--status-revision-border);
+}
+
+.badge-verified {
+  background: var(--status-verified-bg);
+  color: var(--status-verified-text);
+  border-color: var(--status-verified-border);
+}
+
+.badge-source {
+  background: #F1F5F9;
+  color: #0F233A;
+  border: 1px solid #CBD5E1;
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.15s ease-out;
+  user-select: none;
+  min-height: 38px;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: var(--white);
+  border-color: var(--brand-primary);
+}
+
+.btn-primary:hover {
+  background: var(--brand-hover);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--neutral-800);
+  border-color: var(--neutral-300);
+}
+
+.btn-secondary:hover {
+  background: var(--neutral-100);
+  border-color: var(--neutral-400);
+}
+
+.btn-danger {
+  background: var(--status-danger-bg);
+  color: var(--status-danger-text);
+  border-color: var(--status-danger-border);
+}
+
+.btn-danger:hover {
+  background: #ffe4e6;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+  min-height: 32px;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+.form-label .required {
+  color: var(--status-danger-text);
+  margin-left: 2px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--neutral-900);
+  background: var(--white);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  min-height: 42px;
+}
+
+.form-control:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(15, 35, 58, 0.08);
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: var(--neutral-100);
+  color: var(--neutral-500);
+  cursor: not-allowed;
+  border-color: var(--neutral-200);
+}
+
+.form-helper {
+  font-size: 11.5px;
+  color: var(--neutral-500);
+  margin-top: 4px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Verified Box */
+.verified-field-box {
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.verified-field-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.verified-field-label {
+  font-size: 11px;
+  color: var(--neutral-500);
+  font-weight: 500;
+}
+
+.verified-field-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--neutral-950);
+  margin-top: 2px;
+}
+
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  top: 76px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: var(--white);
+  border: 1px solid var(--neutral-200);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 260px;
+  max-width: 380px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.toast-success { border-left: 4px solid var(--status-verified-text); }
+.toast-info { border-left: 4px solid var(--brand-primary); }
+.toast-warning { border-left: 4px solid var(--status-revision-text); }
+
+/* App Footer */
+.app-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--neutral-200);
+  background: var(--white);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--neutral-500);
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    padding-bottom: 84px; /* Clearance for fixed mobile bottom bar */
+  }
+}
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .form-control {
+    font-size: 16px; /* Stop iOS Safari auto-zooming */
+  }
+  .user-info {
+    display: none;
+  }
+  .app-container {
+    padding: 0 16px;
+  }
+}

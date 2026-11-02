@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layanan Perjalanan Dinas Luar Negeri — Politeknik Negeri Jakarta</title>
+  <link rel="icon" type="image/png" href="assets/logo_pnj.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pnj-blue: #0A3A60;
+      --pnj-blue-dark: #07253D;
+      --pnj-blue-light: #EBF3FA;
+      --pnj-yellow: #F5A623;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+      --bg-page: #F8FAFC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+
+
+    /* Main Navigation Header */
+    header.site-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--pnj-blue);
+      line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      color: #334155;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+    .nav-link:hover {
+      color: var(--pnj-blue);
+    }
+    .btn-login-sso {
+      background: var(--pnj-blue);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: 6px;
+      transition: background 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-login-sso:hover {
+      background: var(--pnj-blue-dark);
+    }
+
+    /* Hero Banner - 1 Layar Penuh Desktop */
+    .hero-section {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      min-height: calc(100vh - 73px);
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      box-sizing: border-box;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 52px;
+      align-items: center;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--pnj-blue-light);
+      color: var(--pnj-blue);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .hero-h1 {
+      font-size: 34px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .hero-p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .hero-btn-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary-action {
+      background: var(--pnj-blue);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .btn-primary-action:hover {
+      background: var(--pnj-blue-dark);
+    }
+    .btn-secondary-action {
+      background: #F1F5F9;
+      color: #334155;
+      padding: 12px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary-action:hover {
+      background: #E2E8F0;
+    }
+
+    /* Official Notice Box in Hero */
+    .notice-card {
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .notice-card-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--pnj-blue);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .notice-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+    .notice-list li {
+      display: flex;
+      gap: 10px;
+      color: #334155;
+    }
+    .notice-dot {
+      color: var(--pnj-blue);
+      font-weight: 700;
+    }
+
+    /* Section Styles */
+    section.page-section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .sec-head {
+      margin-bottom: 36px;
+    }
+    .sec-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+    .sec-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Step Process (Modern Process Timeline Tracker) */
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      top: 38px;
+      left: 40px;
+      right: 40px;
+      height: 2px;
+      background: #E2E8F0;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .steps-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .steps-container::before {
+        display: none;
+      }
+    }
+    .step-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 24px 18px 20px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .step-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(10, 58, 96, 0.08);
+      border-color: #CBD5E1;
+    }
+    .step-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--pnj-blue);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 13.5px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px #FFFFFF, 0 0 0 6px #E2E8F0;
+    }
+    .step-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748B;
+      background: #F1F5F9;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.55;
+    }
+
+    /* Requirements Table */
+    .req-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    table.req-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+    }
+    table.req-table th {
+      background: #F8FAFC;
+      padding: 12px 18px;
+      font-weight: 700;
+      color: #334155;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 13px;
+    }
+    table.req-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: #334155;
+    }
+    table.req-table tr:last-child td {
+      border-bottom: none;
+    }
+    .badge-mandatory {
+      background: #FEF2F2;
+      color: #991B1B;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #FECACA;
+    }
+
+    /* Category Cards */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 800px) {
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .role-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .role-head-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--pnj-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .role-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+    .role-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .role-action-link {
+      color: var(--pnj-blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .role-action-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Call To Action Bar */
+    .cta-banner {
+      background: var(--pnj-blue);
+      color: #FFFFFF;
+      padding: 48px 0;
+      text-align: center;
+    }
+    .cta-banner h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .cta-banner p {
+      font-size: 15px;
+      color: #CBD5E1;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+    .btn-cta-white {
+      background: #FFFFFF;
+      color: var(--pnj-blue);
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-block;
+      transition: background 0.15s;
+    }
+    .btn-cta-white:hover {
+      background: #F1F5F9;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      background: #0F172A;
+      color: #94A3B8;
+      padding: 36px 0;
+      font-size: 13px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links a {
+      color: #CBD5E1;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-wrap">
+        <img src="assets/logo_pnj.png" alt="Logo PNJ" class="brand-logo">
+        <div>
+          <div class="brand-title">Layanan PDLN</div>
+          <div class="brand-sub">Politeknik Negeri Jakarta</div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#tahapan" class="nav-link">Alur Pengajuan</a>
+        <a href="#persyaratan" class="nav-link">Persyaratan Dokumen</a>
+        <a href="#civitas" class="nav-link">Kategori Pemohon</a>
+        <a href="login.html" class="btn-login-sso">
+          <span>Masuk Akun SSO</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 3. Clean Institutional Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-tag">Sistem Administrasi PDLN PNJ</span>
+        <h1 class="hero-h1">Portal Pra-Pengajuan &amp; Verifikasi Izin Perjalanan Dinas Luar Negeri</h1>
+        <p class="hero-p">
+          Sistem pelayanan resmi bagi civitas akademika Politeknik Negeri Jakarta untuk proses pra-verifikasi dokumen sebelum penerbitan Naskah Dinas SRIKANDI dan Surat Persetujuan (SP) Kementerian Sekretariat Negara RI.
+        </p>
+        <div class="hero-btn-row">
+          <a href="login.html" class="btn-primary-action">Masuk Akun SSO PNJ</a>
+          <a href="#tahapan" class="btn-secondary-action">Pelajari Alur Prosedur</a>
+        </div>
+      </div>
+
+      <!-- Information Notice Card (Bukan Mockup Fiktif) -->
+      <div class="notice-card">
+        <div class="notice-card-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>Ketentuan Penting Pengajuan:</span>
+        </div>
+        <ul class="notice-list">
+          <li>
+            <span class="notice-dot">•</span>
+            <span><strong>Batas Waktu:</strong> Berkas wajib diajukan minimal <strong>40 hari kerja</strong> sebelum tanggal keberangkatan.</span>
+          </li>
+          <li>
+            <span class="notice-dot">•</span>
+            <span><strong>Masa Berlaku Paspor:</strong> Minimal tersisa 6 bulan sebelum masa berlaku paspor habis.</span>
+          </li>
+          <li>
+            <span class="notice-dot">•</span>
+            <span><strong>Format Berkas:</strong> Scan dokumen asli berformat PDF, resolusi jelas minimal 300 DPI, maksimal 2 MB per file.</span>
+          </li>
+          <li>
+            <span class="notice-dot">•</span>
+            <span><strong>Persetujuan Jurusan:</strong> Wajib melampirkan surat rekomendasi dan persetujuan dari Ketua Jurusan.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Real Workflow Steps (5 Tahapan Resmi) -->
+  <section id="tahapan" class="page-section" style="background: #FFFFFF;">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Alur Pengajuan Berkas PDLN</h2>
+        <p class="sec-desc">Prosedur verifikasi bertahap dari tingkat kampus hingga clearance kementerian.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-header-row">
+            <div class="step-num">1</div>
+            <span class="step-badge">Tahap 1</span>
+          </div>
+          <div class="step-title">Pendaftaran Usulan</div>
+          <div class="step-desc">Pemohon masuk via SSO PNJ dan melampirkan berkas persyaratan pra-pengajuan secara digital.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-header-row">
+            <div class="step-num">2</div>
+            <span class="step-badge">Tahap 2</span>
+          </div>
+          <div class="step-title">Verifikasi KUI</div>
+          <div class="step-desc">Tim KUI memvalidasi keabsahan dokumen, batas waktu H-40, serta surat undangan penyelenggara luar negeri.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-header-row">
+            <div class="step-num">3</div>
+            <span class="step-badge">Tahap 3</span>
+          </div>
+          <div class="step-title">Disposisi Pimpinan</div>
+          <div class="step-desc">Review kepatuhan dan penerbitan persetujuan dinas resmi dari Direktur Politeknik Negeri Jakarta.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-header-row">
+            <div class="step-num">4</div>
+            <span class="step-badge">Tahap 4</span>
+          </div>
+          <div class="step-title">Naskah SRIKANDI</div>
+          <div class="step-desc">Penerbitan surat usulan kementerian terintegrasi SRIKANDI dengan Tanda Tangan Elektronik (TTE) tersertifikasi.</div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-header-row">
+            <div class="step-num">5</div>
+            <span class="step-badge">Tahap 5</span>
+          </div>
+          <div class="step-title">Clearance Setneg</div>
+          <div class="step-desc">Penerbitan Surat Persetujuan (SP) definitif dari Kemensetneg RI sebagai izin legal bepergian dinas ke luar negeri.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Requirements Table (Rapi & Standar Kampus) -->
+  <section id="persyaratan" class="page-section">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Daftar Dokumen Persyaratan</h2>
+        <p class="sec-desc">Pastikan seluruh dokumen berikut sudah dipersiapkan dalam bentuk scan PDF sebelum mengisi usulan.</p>
+      </div>
+
+      <div class="req-box">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Jenis Dokumen</th>
+              <th>Keterangan / Ketentuan</th>
+              <th style="width: 15%; text-align: center;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Scan Paspor Asli</strong></td>
+              <td>Halaman identitas utuh, nomor dan MRZ terbaca jelas, masa berlaku minimal 6 bulan saat berangkat.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+            <tr>
+              <td><strong>Letter of Acceptance (LoA)</strong></td>
+              <td>Surat undangan resmi dari instansi/perguruan tinggi mitra di luar negeri yang mencantumkan jadwal kegiatan.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+            <tr>
+              <td><strong>Surat Pernyataan (SPTJM)</strong></td>
+              <td>Surat Pernyataan Tanggung Jawab Mutlak bermaterai Rp 10.000 sesuai format baku KUI PNJ.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+            <tr>
+              <td><strong>Bukti Sumber Pendanaan</strong></td>
+              <td>Surat jaminan sponsor beasiswa/kampus, atau rekening koran bagi pendanaan mandiri.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+            <tr>
+              <td><strong>Persetujuan Ketua Jurusan</strong></td>
+              <td>Surat rekomendasi tertulis yang ditandatangani oleh Ketua Jurusan masing-masing pemohon di PNJ.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+            <tr>
+              <td><strong>Kerangka Acuan Kerja (KAK)</strong></td>
+              <td>Rincian jadwal, agenda kegiatan dinas, output yang diharapkan, serta anggaran yang diajukan.</td>
+              <td style="text-align: center;"><span class="badge-mandatory">Wajib</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Kategori Pemohon -->
+  <section id="civitas" class="page-section" style="background: #FFFFFF;">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Kategori Pemohon Civitas Akademika</h2>
+        <p class="sec-desc">Satu pintu Single Sign-On (SSO) untuk seluruh kelompok pengguna di lingkungan kampus.</p>
+      </div>
+
+      <div class="roles-grid">
+        <div class="role-box">
+          <div>
+            <div class="role-head-tag">Mahasiswa</div>
+            <div class="role-title">Program Mobilitas Mahasiswa</div>
+            <div class="role-text">Penerima beasiswa IISMA, pertukaran pelajar (student exchange), kompetisi internasional, magang industri global, dan kegiatan akademik luar negeri.</div>
+          </div>
+          <a href="login.html" class="role-action-link">Masuk ke Portal Pengajuan →</a>
+        </div>
+
+        <div class="role-box">
+          <div>
+            <div class="role-head-tag">Dosen &amp; Tendik</div>
+            <div class="role-title">Tugas Kedinasan &amp; Riset</div>
+            <div class="role-text">Penugasan konferensi ilmiah, program beasiswa doktoral (S3), pelatihan keahlian industri, visiting scholar, dan inisiasi kerjasama internasional.</div>
+          </div>
+          <a href="login.html" class="role-action-link">Masuk ke Portal Pengajuan →</a>
+        </div>
+
+        <div class="role-box">
+          <div>
+            <div class="role-head-tag">Pimpinan &amp; Pengelola</div>
+            <div class="role-title">Verifikasi &amp; Disposisi</div>
+            <div class="role-text">Panel verifikator dokumen oleh staf Kantor Urusan Internasional (KUI) serta modul penandatanganan disposisi resmi Direktur PNJ.</div>
+          </div>
+          <a href="login.html?page=admin" class="role-action-link">Masuk ke Panel Operator →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Call To Action -->
+  <section class="cta-banner">
+    <div class="container">
+      <h3>Mulai Pengajuan Izin Dinas Luar Negeri</h3>
+      <p>Masuk menggunakan akun SSO PNJ Anda untuk mengajukan usulan berkas atau memantau status verifikasi yang sedang berjalan.</p>
+      <a href="login.html" class="btn-cta-white">Masuk Akun SSO Sekarang</a>
+    </div>
+  </section>
+
+  <!-- 8. Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Kantor Urusan Internasional</strong> • Politeknik Negeri Jakarta &copy; 2026<br>
+        <span style="font-size: 11.5px; color: #64748B;">Gedung Direktorat PNJ, Jl. Prof. Dr. G.A. Siwabessy, Kampus UI Depok 16425</span>
+      </div>
+      <div class="footer-links">
+        <a href="login.html">Portal SSO</a>
+        <a href="login.html?page=admin">Panel KUI</a>
+        <a href="login.html?page=pimpinan">Panel Pimpinan</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

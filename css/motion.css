@@ -1,0 +1,210 @@
+/* ==========================================================================
+   PDLN PNJ — MINIMALIST MOTION SYSTEM (MOTION.CSS)
+   Snappy, Purposeful, Zero-Lag Transitions for Mobile & Desktop
+   ========================================================================== */
+
+:root {
+  --motion-fast: 120ms;
+  --motion-normal: 220ms;
+  --motion-slow: 320ms;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:    cubic-bezier(0.2, 0.9, 0.3, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Tactile Click Feedback */
+button, .btn, .role-btn, .clickable-chip, .route-card-select {
+  transition: transform var(--motion-fast) var(--ease-spring),
+              background-color var(--motion-fast) ease,
+              border-color var(--motion-fast) ease,
+              box-shadow var(--motion-fast) ease;
+}
+
+button:active:not(:disabled),
+.btn:active:not(:disabled),
+.role-btn:active,
+.clickable-chip:active,
+.route-card-select:active {
+  transform: scale(0.97);
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bottomSheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes waveDot {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+/* Utility Motion Classes */
+.motion-fade-in {
+  animation: fadeIn var(--motion-normal) var(--ease-out) forwards;
+}
+
+.motion-slide-up {
+  animation: slideUpFade var(--motion-normal) var(--ease-spring) forwards;
+}
+
+.motion-scale-in {
+  animation: scaleIn var(--motion-normal) var(--ease-spring) forwards;
+}
+
+/* Accordion Smooth Expand */
+.conditional-box {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-normal) var(--ease-spring), opacity var(--motion-fast) ease;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.conditional-box.visible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.conditional-inner {
+  min-height: 0;
+}
+
+/* Modal Overlay & Dialog / Sheet */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 9, 11, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn var(--motion-fast) ease forwards;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--neutral-200);
+  width: 100%;
+  max-width: 580px;
+  animation: scaleIn var(--motion-normal) var(--ease-spring) forwards;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* On Mobile Screens: Transform Modal into Native-feeling Bottom Sheet */
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 85vh;
+    animation: bottomSheetSlideUp var(--motion-slow) var(--ease-spring) forwards;
+  }
+
+  .sheet-drag-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--neutral-300);
+    border-radius: var(--radius-full);
+    margin: 10px auto 4px auto;
+  }
+}
+
+/* Toast Motion */
+.toast-enter {
+  animation: toastSlideIn var(--motion-normal) var(--ease-spring) forwards;
+}
+
+.toast-exit {
+  animation: toastSlideOut var(--motion-fast) var(--ease-in) forwards;
+}
+
+/* Chat Assistant Typing */
+.typing-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--neutral-500);
+  animation: waveDot 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
